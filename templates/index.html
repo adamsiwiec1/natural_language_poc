@@ -11,88 +11,51 @@
        <figure class="text-center">
         <br><br><br><br>
 
+        <script>
+                function formSubmit1() {
+                    const ddl = document.getElementById('ddl1');
+                    document.form1.action = ddl.options[ddl.selectedIndex].value;
+                }
+                function formSubmit2() {
+                    const ddl = document.getElementById('ddl2');
+                    document.form2.action = ddl.options[ddl.selectedIndex].value;
+                }
+        </script>
 
-      <h3>pdf entity:</h3>
-       <form action = "http://localhost:5000/pdf/analyze_entities" method = "POST"
-         enctype = "multipart/form-data">
+      <form name="form1" onsubmit="formSubmit1()" method = "POST" enctype = "multipart/form-data">
+          Choose a PDF:
          <input type = "file" name = "file" />
-         <button type = "submit">Submit</button>
+          Choose an action to perform on your PDF:
+          <select id="ddl1" name="ddl1">
+            <option value="http://localhost:5000/pdf/analyze_entities" type = "file" name = "file">Analyze Entities</option>
+            <option value="http://localhost:5000/pdf/analyze_entity_sentiment" type = "file" name = "file">Analyze Entity Sentiment</option>
+           <option value="http://localhost:5000/pdf/analyze_sentiment" type = "file" name = "file">Analyze Sentiment</option>
+           <option value="http://localhost:5000/pdf/analyze_syntax" type = "file" name = "file">Analyze Syntax</option>
+           <option value="http://localhost:5000/pdf/annotate_text" type = "file" name = "file">Annotate Text</option>
+           <option value="http://localhost:5000/pdf/classify_text" type = "file" name = "file">Classify Text</option>
+          </select>
+         <button type = "submit" >Submit</button>
       </form>
-           <br>
-       <h3>pdf entity sentiment:</h3>
-        <form action = "http://localhost:5000/pdf/analyze_entity_sentiment" method = "POST"
-        enctype = "multipart/form-data">
-             <input type = "file" name = "file" />
-            <button type = "submit">Submit</button>
-        </form>
 
-                  <h3>pdf sentiment:</h3>
-        <form action = "http://localhost:5000/pdf/analyze_sentiment" method = "POST"
-        enctype = "multipart/form-data">
-             <input type = "file" name = "file" />
-            <button type = "submit">Submit</button>
-        </form>
-                  <h3>pdf syntax:</h3>
-        <form action = "http://localhost:5000/pdf/analyze_syntax" method = "POST"
-        enctype = "multipart/form-data">
-             <input type = "file" name = "file" />
-            <button type = "submit">Submit</button>
-        </form>
-                  <h3>pdf annotate:</h3>
-        <form action = "http://localhost:5000/pdf/annotate_text" method = "POST"
-        enctype = "multipart/form-data">
-             <input type = "file" name = "file" />
-            <button type = "submit">Submit</button>
-        </form>
-                  <h3>pdf classify:</h3>
-        <form action = "http://localhost:5000/pdf/classify_text" method = "POST"
-        enctype = "multipart/form-data">
-             <input type = "file" name = "file" />
-            <button type = "submit">Submit</button>
-        </form>
         <br><br><br><br><br>
-       <h3>entity:</h3>
-      <form action = "http://localhost:5000/analyze_entities" method = "POST"
-         enctype = "multipart/form-data">
+
+     <form name="form2" onsubmit="formSubmit2()" method = "POST" enctype = "multipart/form-data">
+            Enter the text you would like to analyze:
+          &nbsp;
           <input class="text-xl-center" type = "text" name = "text" />
-         <button type = "submit">Submit</button>
+         &nbsp;
+            Choose an action to perform text:
+         &nbsp;
+          <select id="ddl2" name="ddl2">
+            <option value="http://localhost:5000/analyze_entities"> Analyze Entities</option>
+            <option value="http://localhost:5000/analyze_entity_sentiment">Analyze Entity Sentiment</option>
+           <option value="http://localhost:5000/analyze_sentiment"> Analyze Sentiment</option>
+           <option value="http://localhost:5000/analyze_syntax"> Analyze Syntax</option>
+             <option value="http://localhost:5000/analyze_syntax"> Annotate Text</option>
+             <option value="http://localhost:5000/analyze_syntax"> Classify Text</option>
+              </select>
+         <button type = "submit" >Submit</button>
       </form>
-
-      <h3>entity sentiment:</h3>
-       <form action = "http://localhost:5000/analyze_entity_sentiment" method = "POST"
-        enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-            <button type = "submit">Submit</button>
-        </form>
-
-     <h3>sentiment:</h3>
-       <form action = "http://localhost:5000/analyze_sentiment" method = "POST"
-        enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-            <button type = "submit">Submit</button>
-        </form>
-
-      <h3>syntax:</h3>
-       <form action = "http://localhost:5000/analyze_syntax" method = "POST"
-        enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-            <button type = "submit">Submit</button>
-        </form>
-
-
-     <h3>annotate:</h3>
-       <form action = "http://localhost:5000/annotate_text" method = "POST"
-        enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-            <button type = "submit">Submit</button>
-        </form>
-
-    <h3>classify:</h3>
-       <form action = "http://localhost:5000/classify_text" method = "POST"
-        enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-            <button type = "submit">Submit</button>
-        </form>
 
        </figure>
    </body>
