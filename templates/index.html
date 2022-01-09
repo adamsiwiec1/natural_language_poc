@@ -19,8 +19,33 @@
          <button type = "submit">Submit</button>
       </form>
            <br>
-       <h3>pdf sentiment:</h3>
+       <h3>pdf entity sentiment:</h3>
         <form action = "http://localhost:5000/pdf/analyze_entity_sentiment" method = "POST"
+        enctype = "multipart/form-data">
+             <input type = "file" name = "file" />
+            <button type = "submit">Submit</button>
+        </form>
+
+                  <h3>pdf sentiment:</h3>
+        <form action = "http://localhost:5000/pdf/analyze_sentiment" method = "POST"
+        enctype = "multipart/form-data">
+             <input type = "file" name = "file" />
+            <button type = "submit">Submit</button>
+        </form>
+                  <h3>pdf syntax:</h3>
+        <form action = "http://localhost:5000/pdf/analyze_syntax" method = "POST"
+        enctype = "multipart/form-data">
+             <input type = "file" name = "file" />
+            <button type = "submit">Submit</button>
+        </form>
+                  <h3>pdf annotate:</h3>
+        <form action = "http://localhost:5000/pdf/annotate_text" method = "POST"
+        enctype = "multipart/form-data">
+             <input type = "file" name = "file" />
+            <button type = "submit">Submit</button>
+        </form>
+                  <h3>pdf classify:</h3>
+        <form action = "http://localhost:5000/pdf/classify_text" method = "POST"
         enctype = "multipart/form-data">
              <input type = "file" name = "file" />
             <button type = "submit">Submit</button>
