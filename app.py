@@ -8,10 +8,14 @@ logging.basicConfig(filename='./app.log', encoding='utf-8')
 
 app = Flask(__name__)
 api = Api(app)
-app.register_blueprint(pdf.pdf_analyze_entities_endpoint)
-app.register_blueprint(pdf.pdf_analyze_entity_sentiment_endpoint)
-app.register_blueprint(raw.analyze_entities_endpoint)
-app.register_blueprint(raw.analyze_entity_sentiment_endpoint)
+app.register_blueprint(pdf.pdf_analyze_entities_bp)
+app.register_blueprint(pdf.pdf_analyze_entity_sentiment_bp)
+app.register_blueprint(raw.analyze_entities_bp)
+app.register_blueprint(raw.analyze_entity_sentiment_bp)
+app.register_blueprint(raw.analyze_sentiment_bp)
+app.register_blueprint(raw.analyze_syntax_bp)
+app.register_blueprint(raw.annotate_text_bp)
+app.register_blueprint(raw.classify_text_bp)
 
 
 @app.route('/')

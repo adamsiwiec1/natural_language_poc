@@ -3,33 +3,16 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>api</title>
+    <title>nlp</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/adam.css') }}">
 </head>
    <body>
        <figure class="text-center">
-        <br>
-        <h4>Please choose a pdf file to upload.</h4>
-        <br><br><br>
+        <br><br><br><br>
 
 
-       <h3>entity:</h3>
-      <form action = "http://localhost:5000/analyze_entities" method = "POST"
-         enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-         <button type = "submit">Submit</button>
-      </form>
-
-      <h3>sentiment:</h3>
-       <form action = "http://localhost:5000/analyze_entity_sentiment" method = "POST"
-        enctype = "multipart/form-data">
-          <input class="text-xl-center" type = "text" name = "text" />
-            <button type = "submit">Submit</button>
-        </form>
-        <br><br><br><br><br><br>
-
-       <h3>pdf entity:</h3>
+      <h3>pdf entity:</h3>
        <form action = "http://localhost:5000/pdf/analyze_entities" method = "POST"
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />
@@ -42,6 +25,50 @@
              <input type = "file" name = "file" />
             <button type = "submit">Submit</button>
         </form>
+        <br><br><br><br><br>
+       <h3>entity:</h3>
+      <form action = "http://localhost:5000/analyze_entities" method = "POST"
+         enctype = "multipart/form-data">
+          <input class="text-xl-center" type = "text" name = "text" />
+         <button type = "submit">Submit</button>
+      </form>
+
+      <h3>entity sentiment:</h3>
+       <form action = "http://localhost:5000/analyze_entity_sentiment" method = "POST"
+        enctype = "multipart/form-data">
+          <input class="text-xl-center" type = "text" name = "text" />
+            <button type = "submit">Submit</button>
+        </form>
+
+     <h3>sentiment:</h3>
+       <form action = "http://localhost:5000/analyze_sentiment" method = "POST"
+        enctype = "multipart/form-data">
+          <input class="text-xl-center" type = "text" name = "text" />
+            <button type = "submit">Submit</button>
+        </form>
+
+      <h3>syntax:</h3>
+       <form action = "http://localhost:5000/analyze_syntax" method = "POST"
+        enctype = "multipart/form-data">
+          <input class="text-xl-center" type = "text" name = "text" />
+            <button type = "submit">Submit</button>
+        </form>
+
+
+     <h3>annotate:</h3>
+       <form action = "http://localhost:5000/annotate_text" method = "POST"
+        enctype = "multipart/form-data">
+          <input class="text-xl-center" type = "text" name = "text" />
+            <button type = "submit">Submit</button>
+        </form>
+
+    <h3>classify:</h3>
+       <form action = "http://localhost:5000/classify_text" method = "POST"
+        enctype = "multipart/form-data">
+          <input class="text-xl-center" type = "text" name = "text" />
+            <button type = "submit">Submit</button>
+        </form>
+
        </figure>
    </body>
 </html>

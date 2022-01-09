@@ -6,11 +6,11 @@ from flask import request, Blueprint
 from helpers import Helpers, nlp_url
 
 h=Helpers()
-pdf_analyze_entities_endpoint=Blueprint('pdf_analyze_entities_endpoint', __name__)
-pdf_analyze_entity_sentiment_endpoint=Blueprint('pdf_analyze_entity_sentiment_endpoint', __name__)
+pdf_analyze_entities_bp=Blueprint('pdf_analyze_entities_endpoint', __name__)
+pdf_analyze_entity_sentiment_bp=Blueprint('pdf_analyze_entity_sentiment_endpoint', __name__)
 
 
-@pdf_analyze_entities_endpoint.route('/pdf/analyze_entities', methods=['POST'])
+@pdf_analyze_entities_bp.route('/pdf/analyze_entities', methods=['POST'])
 def pdf_analyze_entities():
     if request.method == 'POST':
         f=request.files['file']
@@ -36,7 +36,7 @@ def pdf_analyze_entities():
                            'entities:': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
 
 
-@pdf_analyze_entity_sentiment_endpoint.route('/pdf/analyze_entity_sentiment', methods=['POST'])
+@pdf_analyze_entity_sentiment_bp.route('/pdf/analyze_entity_sentiment', methods=['POST'])
 def pdf_analyze_entity_sentiment():
     f=request.files['file']
     path=os.path.join(upload_folder, f.filename)
