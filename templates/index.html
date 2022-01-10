@@ -4,87 +4,98 @@
 <head>
     <meta charset="UTF-8">
     <title>nlp</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/adam.css') }}">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/adam.css') }}" rel="stylesheet">
 </head>
-   <body>
-       <figure class="text-center">
-        <br><br><br><br>
+<body>
+<figure class="text-center">
+    <br><br><br><br>
 
-        <script>
-                function formSubmit1() {
-                    const ddl = document.getElementById('ddl1');
-                    document.form1.action = ddl.options[ddl.selectedIndex].value;
-                }
-                function formSubmit2() {
-                    const ddl = document.getElementById('ddl2');
-                    document.form2.action = ddl.options[ddl.selectedIndex].value;
-                }
-        </script>
-<div class="container">
+    <script>
+        function formSubmit1() {
+            const ddl = document.getElementById('ddl1');
+            document.form1.action = ddl.options[ddl.selectedIndex].value;
+        }
 
-    <div id="page-header">
-    <div class="row">
-        <div class="col-lg-8 col-md-7 col-sm-6">
-            <h1>Test H1</h1>
-            <p class="lead"> Description of the NLP.</p>
+        function formSubmit2() {
+            const ddl = document.getElementById('ddl2');
+            document.form2.action = ddl.options[ddl.selectedIndex].value;
+        }
+    </script>
+    <div class="container">
+
+        <div id="page-header">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                    <h1>Test H1</h1>
+                    <p class="lead"> Description of the NLP.</p>
+                </div>
+            </div>
+            <br>
+
         </div>
-    </div>
-<br>
 
-    </div>
-
-    <div id="pdf-form">
-      <form name="form1" onsubmit="formSubmit1()" method = "POST" enctype = "multipart/form-data">
-          <div>
-              Choose a PDF:
-          </div>
-              <br>
-          <div>
-               <input type = "file" name = "file" />
-          </div>
-          <div>
-          Choose an action to perform on your PDF:
-            &nbsp;
-          <select id="ddl1" name="ddl1">
-            <option value="http://localhost:5000/pdf/analyze_entities" type = "file" name = "file">Analyze Entities</option>
-            <option value="http://localhost:5000/pdf/analyze_entity_sentiment" type = "file" name = "file">Analyze Entity Sentiment</option>
-           <option value="http://localhost:5000/pdf/analyze_sentiment" type = "file" name = "file">Analyze Sentiment</option>
-           <option value="http://localhost:5000/pdf/analyze_syntax" type = "file" name = "file">Analyze Syntax</option>
-           <option value="http://localhost:5000/pdf/annotate_text" type = "file" name = "file">Annotate Text</option>
-           <option value="http://localhost:5000/pdf/classify_text" type = "file" name = "file">Classify Text</option>
-          </select>
-          </div>
-          <br> <br>
-         <button type = "submit" >Submit</button>
-      </form>
-    </div>
+        <div id="pdf-form">
+            <form enctype="multipart/form-data" method="POST" name="form1" onsubmit="formSubmit1()">
+                <div>
+                    Choose a PDF:
+                </div>
+                <br>
+                <div>
+                    <input name="file" type="file"/>
+                </div>
+                <div>
+                    Choose an action to perform on your PDF:
+                    &nbsp;
+                    <select id="ddl1" name="ddl1">
+                        <option name="file" type="file" value="http://localhost:5000/pdf/analyze_entities">Analyze
+                            Entities
+                        </option>
+                        <option name="file" type="file" value="http://localhost:5000/pdf/analyze_entity_sentiment">
+                            Analyze Entity Sentiment
+                        </option>
+                        <option name="file" type="file" value="http://localhost:5000/pdf/analyze_sentiment">Analyze
+                            Sentiment
+                        </option>
+                        <option name="file" type="file" value="http://localhost:5000/pdf/analyze_syntax">Analyze
+                            Syntax
+                        </option>
+                        <option name="file" type="file" value="http://localhost:5000/pdf/annotate_text">Annotate Text
+                        </option>
+                        <option name="file" type="file" value="http://localhost:5000/pdf/classify_text">Classify Text
+                        </option>
+                    </select>
+                </div>
+                <br> <br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
 
 
         <br><br><br><br><br>
 
 
-    <div id="raw-form">
-     <form name="form2" onsubmit="formSubmit2()" method = "POST" enctype = "multipart/form-data">
-            Enter the text you would like to analyze:
-          &nbsp;
-          <input class="text-xl-center" type = "text" name = "text" />
-         &nbsp;
-            Choose an action to perform text:
-         &nbsp;
-          <select id="ddl2" name="ddl2">
-            <option value="http://localhost:5000/analyze_entities"> Analyze Entities</option>
-            <option value="http://localhost:5000/analyze_entity_sentiment">Analyze Entity Sentiment</option>
-           <option value="http://localhost:5000/analyze_sentiment"> Analyze Sentiment</option>
-           <option value="http://localhost:5000/analyze_syntax"> Analyze Syntax</option>
-             <option value="http://localhost:5000/analyze_syntax"> Annotate Text</option>
-             <option value="http://localhost:5000/analyze_syntax"> Classify Text</option>
-              </select>
-         <button type = "submit" >Submit</button>
-      </form>
-    </div>
+        <div id="raw-form">
+            <form enctype="multipart/form-data" method="POST" name="form2" onsubmit="formSubmit2()">
+                Enter the text you would like to analyze:
+                &nbsp;
+                <input class="text-xl-center" name="text" type="text"/>
+                &nbsp;
+                Choose an action to perform text:
+                &nbsp;
+                <select id="ddl2" name="ddl2">
+                    <option value="http://localhost:5000/analyze_entities"> Analyze Entities</option>
+                    <option value="http://localhost:5000/analyze_entity_sentiment">Analyze Entity Sentiment</option>
+                    <option value="http://localhost:5000/analyze_sentiment"> Analyze Sentiment</option>
+                    <option value="http://localhost:5000/analyze_syntax"> Analyze Syntax</option>
+                    <option value="http://localhost:5000/annotate_text"> Annotate Text</option>
+                    <option value="http://localhost:5000/classify_text"> Classify Text</option>
+                </select>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
 
-</div>
-       </figure>
-   </body>
+    </div>
+</figure>
+</body>
 </html>

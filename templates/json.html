@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>nlp</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/adam.css') }}" rel="stylesheet">
+
+<!--    <script>-->
+<!--            function formSubmit() {-->
+<!--            const ddl = document.getElementById('csv');-->
+<!--            document.form2.text = ddl.options[ddl.selectedIndex].value;-->
+<!--        }-->
+<!--    </script>-->
+
+</head>
+<body>
+
+<form action="/json2csv?name={{data[2]}}&json={{data[1]}}" method="POST" >
+    <button class="link-primary" id="csv" type="submit">Click Here To Download this as CSV</button>
+</form>
+<br>
+<br>
+
+<!--<a type="button" class="link-primary" href="{{ ('/json2csv') }}">Click Here To Download this as CSV</a>-->
+
+{{data[0]|safe}}
+
+
+</body>
+</html>

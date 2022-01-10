@@ -43,3 +43,4 @@ class Helpers:
                        f'\ndate: {datetime.now()}')
 
         return chars, units, cost
+

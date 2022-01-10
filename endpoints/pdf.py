@@ -2,8 +2,9 @@ import os
 import requests
 from config import api_key, upload_folder
 import json
-from flask import request, Blueprint
+from flask import request, Blueprint, render_template, Response
 from helpers import Helpers, nlp_url
+from json2html import json2html
 
 h=Helpers()
 pdf_analyze_entities_bp=Blueprint('pdf_analyze_entities', __name__)
@@ -32,12 +33,19 @@ def analyze_entities():
                                data=json.dumps(body))
         d=json.loads(response.text)
         print(d)
+        print(json.dumps(d))
         h.cost_calculator(pdf.get('text'), 'entity')
-        return json.dumps({'author': pdf.get('author'),
-                           'title': pdf.get('title'),
-                           'subject': pdf.get('subject'),
-                           'pages': pdf.get('pages'),
-                           'entities:': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
+        x=json.dumps({'author': pdf.get('author'),
+                      'title': pdf.get('title'),
+                      'subject': pdf.get('subject'),
+                      'pages': pdf.get('pages'),
+                      'entities:': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
+        print(x)
+
+        return render_template('json.html', data=[json2html.convert(json=x,
+                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                  x,
+                                                  "analyze_entities_"+pdf.get('author')+"_"+pdf.get('title')+".csv"])
 
 
 @pdf_analyze_entity_sentiment_bp.route('/pdf/analyze_entity_sentiment', methods=['POST'])
@@ -58,25 +66,48 @@ def analyze_entity_sentiment():
     d=json.loads(response.text)
     print(d)
     h.cost_calculator(pdf.get('text'), 'entity_sentiment')
-    return json.dumps({'author': pdf.get('author'),
-                       'title': pdf.get('title'),
-                       'subject': pdf.get('subject'),
-                       'pages': pdf.get('pages'),
-                       'mentions': [
-                           [(dict(zip(['name', 'content', 'beginOffset', 'type', 'salience', 'magnitude', 'score'],
-                                      (d.get('entities')[i].get('name'),
-                                       mention.get('text').get('content'),
-                                       mention.get('text').get('beginOffset'),
-                                       mention.get('type'),
-                                       mention.get('salience'),
-                                       mention.get('sentiment').get('magnitude'),
-                                       mention.get('sentiment').get('score'))))) for mention in
-                            d.get('entities')[i].get('mentions')]
-                           for i, x in enumerate(d.get('entities'))
-                           if d.get('entities')[i].get('name') in [d.get('entities')[i].get('name')
-                                                                   for mention in d.get('entities')[i].get('mentions')
-                                                                   if mention.get('sentiment').get('magnitude') > 0 or
-                                                                   mention.get('sentiment').get('score') > 0]]})
+    x=json.dumps({'author': pdf.get('author'),
+                  'title': pdf.get('title'),
+                  'subject': pdf.get('subject'),
+                  'pages': pdf.get('pages'),
+                  'mentions': [
+                      [(dict(zip(['name', 'content', 'beginOffset', 'type', 'salience', 'magnitude', 'score'],
+                                 (d.get('entities')[i].get('name'),
+                                  mention.get('text').get('content'),
+                                  mention.get('text').get('beginOffset'),
+                                  mention.get('type'),
+                                  mention.get('salience'),
+                                  mention.get('sentiment').get('magnitude'),
+                                  mention.get('sentiment').get('score'))))) for mention in
+                       d.get('entities')[i].get('mentions')]
+                      for i, x in enumerate(d.get('entities'))
+                      if d.get('entities')[i].get('name') in [d.get('entities')[i].get('name')
+                                                              for mention in d.get('entities')[i].get('mentions')
+                                                              if mention.get('sentiment').get('magnitude') > 0 or
+                                                              mention.get('sentiment').get('score') > 0]]})
+    # return json.dumps({'author': pdf.get('author'),
+    #                    'title': pdf.get('title'),
+    #                    'subject': pdf.get('subject'),
+    #                    'pages': pdf.get('pages'),
+    #                    'mentions': [
+    #                        [(dict(zip(['name', 'content', 'beginOffset', 'type', 'salience', 'magnitude', 'score'],
+    #                                   (d.get('entities')[i].get('name'),
+    #                                    mention.get('text').get('content'),
+    #                                    mention.get('text').get('beginOffset'),
+    #                                    mention.get('type'),
+    #                                    mention.get('salience'),
+    #                                    mention.get('sentiment').get('magnitude'),
+    #                                    mention.get('sentiment').get('score'))))) for mention in
+    #                         d.get('entities')[i].get('mentions')]
+    #                        for i, x in enumerate(d.get('entities'))
+    #                        if d.get('entities')[i].get('name') in [d.get('entities')[i].get('name')
+    #                                                                for mention in d.get('entities')[i].get('mentions')
+    #                                                                if mention.get('sentiment').get('magnitude') > 0 or
+    #                                                                mention.get('sentiment').get('score') > 0]]})
+
+    return render_template('json.html', data=[json2html.convert(json=x,
+                                                                table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                              x])
 
 
 @pdf_analyze_sentiment_bp.route('/pdf/analyze_sentiment', methods=['POST'])
@@ -98,7 +129,10 @@ def analyze_sentiment():
         d=json.loads(response.text)
         print('sentiment:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
-        return json.dumps(d)
+        x=json.dumps(d)
+        return render_template('json.html', data=[json2html.convert(json=x,
+                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                  x])
 
 
 @pdf_analyze_syntax_bp.route('/pdf/analyze_syntax', methods=['POST'])
@@ -120,7 +154,11 @@ def analyze_syntax():
         d=json.loads(response.text)
         print('classify:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
-        return json.dumps(d)
+        x=json.dumps(d)
+        csv='1,2,3\n4,5,6\n'
+        return render_template('json.html', data=[json2html.convert(json=x,
+                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                  x])
 
 
 @pdf_annotate_text_bp.route('/pdf/annotate_text', methods=['POST'])
@@ -150,7 +188,10 @@ def annotate_text():
         d=json.loads(response.text)
         print('annotate:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
-        return json.dumps(d)
+        x=json.dumps(d)
+        return render_template('json.html', data=[json2html.convert(json=x,
+                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                  x])
 
 
 @pdf_classify_text_bp.route('/pdf/classify_text', methods=['POST'])
@@ -172,4 +213,7 @@ def classify_text():
         d=json.loads(response.text)
         print('classify:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
-        return json.dumps(d)
+        x=json.dumps(d)
+        return render_template('json.html', data=[json2html.convert(json=x,
+                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                  x])
