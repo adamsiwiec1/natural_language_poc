@@ -21,11 +21,31 @@
                     document.form2.action = ddl.options[ddl.selectedIndex].value;
                 }
         </script>
+<div class="container">
 
+    <div id="page-header">
+    <div class="row">
+        <div class="col-lg-8 col-md-7 col-sm-6">
+            <h1>Test H1</h1>
+            <p class="lead"> Description of the NLP.</p>
+        </div>
+    </div>
+<br>
+
+    </div>
+
+    <div id="pdf-form">
       <form name="form1" onsubmit="formSubmit1()" method = "POST" enctype = "multipart/form-data">
-          Choose a PDF:
-         <input type = "file" name = "file" />
+          <div>
+              Choose a PDF:
+          </div>
+              <br>
+          <div>
+               <input type = "file" name = "file" />
+          </div>
+          <div>
           Choose an action to perform on your PDF:
+            &nbsp;
           <select id="ddl1" name="ddl1">
             <option value="http://localhost:5000/pdf/analyze_entities" type = "file" name = "file">Analyze Entities</option>
             <option value="http://localhost:5000/pdf/analyze_entity_sentiment" type = "file" name = "file">Analyze Entity Sentiment</option>
@@ -34,11 +54,17 @@
            <option value="http://localhost:5000/pdf/annotate_text" type = "file" name = "file">Annotate Text</option>
            <option value="http://localhost:5000/pdf/classify_text" type = "file" name = "file">Classify Text</option>
           </select>
+          </div>
+          <br> <br>
          <button type = "submit" >Submit</button>
       </form>
+    </div>
+
 
         <br><br><br><br><br>
 
+
+    <div id="raw-form">
      <form name="form2" onsubmit="formSubmit2()" method = "POST" enctype = "multipart/form-data">
             Enter the text you would like to analyze:
           &nbsp;
@@ -56,7 +82,9 @@
               </select>
          <button type = "submit" >Submit</button>
       </form>
+    </div>
 
+</div>
        </figure>
    </body>
 </html>
