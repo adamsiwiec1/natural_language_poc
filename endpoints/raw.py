@@ -1,8 +1,10 @@
-import requests
-from config import api_key
 import json
-from flask_restful import reqparse
+
+import requests
 from flask import Blueprint
+from flask_restful import reqparse
+
+from config import api_key
 from helpers import Helpers, nlp_url
 
 h=Helpers()
@@ -114,7 +116,7 @@ def annotate_text():
         "language": "EN",
         "content": args.get('text')
     }, "encodingType": "UTF8",
-       'features': {
+        'features': {
             "extractSyntax": True,
             "extractEntities": True,
             "extractDocumentSentiment": True,

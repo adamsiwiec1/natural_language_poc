@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+    <div id="raw-form">
+        <form enctype="multipart/form-data" method="POST" name="form2" onsubmit="formSubmit2()">
+            Enter the text you would like to analyze:
+            &nbsp;
+            <input class="text-xl-center" name="text" type="text"/>
+            &nbsp;
+            Choose an action to perform text:
+            &nbsp;
+            <select id="ddl2" name="ddl2">
+                <option value="http://localhost:5000/analyze_entities"> Analyze Entities</option>
+                <option value="http://localhost:5000/analyze_entity_sentiment">Analyze Entity Sentiment</option>
+                <option value="http://localhost:5000/analyze_sentiment"> Analyze Sentiment</option>
+                <option value="http://localhost:5000/analyze_syntax"> Analyze Syntax</option>
+                <option value="http://localhost:5000/annotate_text"> Annotate Text</option>
+                <option value="http://localhost:5000/classify_text"> Classify Text</option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

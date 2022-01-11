@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>nlp</title>
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/adam.css') }}" rel="stylesheet">
+
+    <script>
+        function formSubmit1() {
+            const ddl = document.getElementById('ddl1');
+            document.form1.action = ddl.options[ddl.selectedIndex].value;
+        }
+
+        function formSubmit2() {
+            const ddl = document.getElementById('ddl2');
+            document.form2.action = ddl.options[ddl.selectedIndex].value;
+        }
+    </script>
+
+    <style>
+        .navbar-nav {
+            flex-direction: row;
+        }
+
+        .nav-link {
+            padding-right: .5rem !important;
+            padding-left: .5rem !important;
+        }
+    </style>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Home</a>
+        <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/pdf">PDF</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/raw">Raw Text</a>
+                </li>
+            </ul>
+        </div>
+            <ul class="navbar-nav me-auto">
+                <li>
+                    <a class="nav-link" href="/">log in</a>
+                </li>
+                <a class="nav-link">|</a>
+                <li>
+                    <a class="nav-link" href="/">sign up</a>
+                </li>
+            </ul>
+    </div>
+</nav>
+
+<body>
+{% block content %}{% endblock %}
+</body>
+
+</html>

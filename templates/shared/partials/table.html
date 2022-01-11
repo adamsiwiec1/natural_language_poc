@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block content %}
+<body>
+<form method="POST">
+    <button class="link-primary" id="csv" style="width: 300px; background-color: black;" type="submit" formaction="/download_csv?name={{data[2]}}&json={{data[1]}}">
+        Download CSV
+    </button>
+    <button class="link-primary" id="json" style="width: 300px; background-color: black;" type="submit" formaction="/download_json?name={{data[2]}}&json={{data[1]}}">
+        Download JSON
+    </button>
+</form>
+{{data[0]|safe}}
+</body>
+{% endblock %}

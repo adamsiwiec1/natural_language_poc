@@ -1,10 +1,12 @@
-import os
-import requests
-from config import api_key, upload_folder
 import json
-from flask import request, Blueprint, render_template, Response
-from helpers import Helpers, nlp_url
+import os
+
+import requests
+from flask import request, Blueprint, render_template
 from json2html import json2html
+
+from config import api_key, upload_folder
+from helpers import Helpers, nlp_url
 
 h=Helpers()
 pdf_analyze_entities_bp=Blueprint('pdf_analyze_entities', __name__)
@@ -42,10 +44,12 @@ def analyze_entities():
                       'entities:': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
         print(x)
 
-        return render_template('json.html', data=[json2html.convert(json=x,
-                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
-                                                  x,
-                                                  "analyze_entities_"+pdf.get('author')+"_"+pdf.get('title')+".csv"])
+        return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
+                                                                                      table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                                    x,
+                                                                    "analyze_entities_" + pdf.get(
+                                                                        'author') + "_" + pdf.get(
+                                                                        'title')])
 
 
 @pdf_analyze_entity_sentiment_bp.route('/pdf/analyze_entity_sentiment', methods=['POST'])
@@ -85,29 +89,13 @@ def analyze_entity_sentiment():
                                                               for mention in d.get('entities')[i].get('mentions')
                                                               if mention.get('sentiment').get('magnitude') > 0 or
                                                               mention.get('sentiment').get('score') > 0]]})
-    # return json.dumps({'author': pdf.get('author'),
-    #                    'title': pdf.get('title'),
-    #                    'subject': pdf.get('subject'),
-    #                    'pages': pdf.get('pages'),
-    #                    'mentions': [
-    #                        [(dict(zip(['name', 'content', 'beginOffset', 'type', 'salience', 'magnitude', 'score'],
-    #                                   (d.get('entities')[i].get('name'),
-    #                                    mention.get('text').get('content'),
-    #                                    mention.get('text').get('beginOffset'),
-    #                                    mention.get('type'),
-    #                                    mention.get('salience'),
-    #                                    mention.get('sentiment').get('magnitude'),
-    #                                    mention.get('sentiment').get('score'))))) for mention in
-    #                         d.get('entities')[i].get('mentions')]
-    #                        for i, x in enumerate(d.get('entities'))
-    #                        if d.get('entities')[i].get('name') in [d.get('entities')[i].get('name')
-    #                                                                for mention in d.get('entities')[i].get('mentions')
-    #                                                                if mention.get('sentiment').get('magnitude') > 0 or
-    #                                                                mention.get('sentiment').get('score') > 0]]})
 
-    return render_template('json.html', data=[json2html.convert(json=x,
-                                                                table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
-                                              x])
+    return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
+                                                                                  table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                                x,
+                                                                "analyze_entity_sentiment_" + pdf.get(
+                                                                    'author') + "_" + pdf.get(
+                                                                    'title')])
 
 
 @pdf_analyze_sentiment_bp.route('/pdf/analyze_sentiment', methods=['POST'])
@@ -130,9 +118,12 @@ def analyze_sentiment():
         print('sentiment:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
         x=json.dumps(d)
-        return render_template('json.html', data=[json2html.convert(json=x,
-                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
-                                                  x])
+        return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
+                                                                                      table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                                    x,
+                                                                    "analyze_sentiment_" + pdf.get(
+                                                                        'author') + "_" + pdf.get(
+                                                                        'title')])
 
 
 @pdf_analyze_syntax_bp.route('/pdf/analyze_syntax', methods=['POST'])
@@ -156,9 +147,12 @@ def analyze_syntax():
         h.cost_calculator(pdf.get('text'), 'content_classification')
         x=json.dumps(d)
         csv='1,2,3\n4,5,6\n'
-        return render_template('json.html', data=[json2html.convert(json=x,
-                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
-                                                  x])
+        return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
+                                                                                      table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                                    x,
+                                                                    "analyze_syntax_" + pdf.get(
+                                                                        'author') + "_" + pdf.get(
+                                                                        'title')])
 
 
 @pdf_annotate_text_bp.route('/pdf/annotate_text', methods=['POST'])
@@ -189,9 +183,12 @@ def annotate_text():
         print('annotate:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
         x=json.dumps(d)
-        return render_template('json.html', data=[json2html.convert(json=x,
-                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
-                                                  x])
+        return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
+                                                                                      table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                                    x,
+                                                                    "annotate_text_" + pdf.get(
+                                                                        'author') + "_" + pdf.get(
+                                                                        'title')])
 
 
 @pdf_classify_text_bp.route('/pdf/classify_text', methods=['POST'])
@@ -214,6 +211,9 @@ def classify_text():
         print('classify:' + str(d))
         h.cost_calculator(pdf.get('text'), 'content_classification')
         x=json.dumps(d)
-        return render_template('json.html', data=[json2html.convert(json=x,
-                                                                    table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
-                                                  x])
+        return render_template('/shared/partials/table.html/', data=[json2html.convert(json=x,
+                                                                                      table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
+                                                                    x,
+                                                                    "classify_text_" + pdf.get(
+                                                                        'author') + "_" + pdf.get(
+                                                                        'title')])

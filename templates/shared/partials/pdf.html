@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="container">
+    <div class="align-content-center" id="pdf-form">
+        <form enctype="multipart/form-data" method="POST" name="form1" onsubmit="formSubmit1()">
+            <label class="form-label mt-4" for="file">Choose a PDF:</label>
+            <br>
+            <input id="file" name="file" style="margin: auto;" type="file"/>
+            <br>
+            <label class="form-label mt-4" for="ddl1">Choose an action to perform on your PDF:</label>
+            &nbsp;
+            <select id="ddl1" name="ddl1">
+                <option name="file" type="file" value="/pdf/analyze_entities">Analyze
+                    Entities
+                </option>
+                <option name="file" type="file" value="/pdf/analyze_entity_sentiment">
+                    Analyze Entity Sentiment
+                </option>
+                <option name="file" type="file" value="http://localhost:5000/pdf/analyze_sentiment">Analyze
+                    Sentiment
+                </option>
+                <option name="file" type="file" value="http://localhost:5000/pdf/analyze_syntax">Analyze
+                    Syntax
+                </option>
+                <option name="file" type="file" value="http://localhost:5000/pdf/annotate_text">Annotate Text
+                </option>
+                <option name="file" type="file" value="http://localhost:5000/pdf/classify_text">Classify Text
+                </option>
+            </select>
+            <br> <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
