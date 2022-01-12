@@ -10,8 +10,7 @@ from endpoints.main import main as main_blueprint
 from endpoints.pdf import pdf as pdf_blueprint
 from endpoints.raw import raw as raw_blueprint
 from models import User,init_db
-from waitress import serve
-
+from gunicorn import
 
 # init SQLAlchemy so we can use it later in our models
 
@@ -45,5 +44,7 @@ def page_not_found(error):
     return render_template('/shared/partials/page_not_found.html'), 404
 
 
+
 def main():
-    serve(app,host='0.0.0.0', port=5000)
+    app.run()
+    #serve(app,host='0.0.0.0', port=5000)
