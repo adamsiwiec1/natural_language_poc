@@ -10,8 +10,6 @@ from endpoints.raw import raw as raw_blueprint
 from models import User,init_db
 import os
 
-url_for.__name__
-
 app=Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY']='secret-key-goes-here'
