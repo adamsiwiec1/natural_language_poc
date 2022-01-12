@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<div style="position: center; margin-left: 100px; margin-right: 100px; margin-top: 25px;">
+    <div id="page-header">
+        <h2><strong>Pricing</strong></h2>
+        <h6>Price shown is per 1000 characters.</h6>
+        <br>
+    </div>
+    <table class="table table-active table-bordered">
+        <tr>
+            <td><strong>Query Name</strong></td>
+            <td><strong>Cost</strong></td>
+            <td><strong>Type</strong></td>
+            <td><strong>Description</strong></td>
+        </tr>
+        <tbody>
+        <tr>
+            <td>Entity Analysis</td>
+            <td>$1.00</strong></td>
+            <td>Entity Recognition</strong></td>
+            <td>Finds named entities (currently proper names and common nouns) in the text along with entity
+                types, salience, mentions for each entity, and other properties.</strong></td>
+        </tr>
+
+
+        <tr>
+            <td>Sentiment Analysis</td>
+            <td>$1.50</strong></td>
+            <td>Type</strong></td>
+            <td>Analyzes the sentiment of the provided text.
+            </strong></td>
+        </tr>
+
+        <tr>
+            <td>Entity Sentiment Analysis</td>
+            <td>$2.00</td>
+            <td>Type</td>
+            <td>Finds entities and analyzes sentiment associated witr each entity and its mentions.
+            </td>
+        </tr>
+
+        <tr>
+            <td>Syntax Analysis</td>
+            <td>$1.00</td>
+            <td>Type</td>
+            <td>Analyzes tre syntax of tre text and provides sentence boundaries and tokenization along witr
+                part of speech tags, dependency trees, and otrer properties.</td>
+        </tr>
+
+        <tr>
+            <td>Content Classification</td>
+            <td>$2.00</td>
+            <td>Type</td>
+            <td>Classifies a document into categories.</td>
+        </tr>
+        <tr>
+            <td>Annotate Text</td>
+            <td>$7.00</td>
+            <td>Type</td>
+            <td>A convenience metrod that provides all the features that analyzeSentiment, analyzeEntities, and
+                analyzeSyntax provide in one call.</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}

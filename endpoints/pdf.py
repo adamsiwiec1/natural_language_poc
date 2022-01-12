@@ -7,17 +7,21 @@ from json2html import json2html
 
 from config import api_key, upload_folder
 from helpers import Helpers, nlp_url
+from flask_login import login_required
 
 h=Helpers()
-pdf_analyze_entities_bp=Blueprint('pdf_analyze_entities', __name__)
-pdf_analyze_entity_sentiment_bp=Blueprint('pdf_analyze_entity_sentiment', __name__)
-pdf_analyze_sentiment_bp=Blueprint('pdf_analyze_sentiment', __name__)
-pdf_analyze_syntax_bp=Blueprint('pdf_analyze_syntax', __name__)
-pdf_annotate_text_bp=Blueprint('pdf_annotate_text', __name__)
-pdf_classify_text_bp=Blueprint('pdf_classify_text', __name__)
+# pdf_analyze_entities_bp=Blueprint('pdf_analyze_entities', __name__)
+# pdf_analyze_entity_sentiment_bp=Blueprint('pdf_analyze_entity_sentiment', __name__)
+# pdf_analyze_sentiment_bp=Blueprint('pdf_analyze_sentiment', __name__)
+# pdf_analyze_syntax_bp=Blueprint('pdf_analyze_syntax', __name__)
+# pdf_annotate_text_bp=Blueprint('pdf_annotate_text', __name__)
+# pdf_classify_text_bp=Blueprint('pdf_classify_text', __name__)
+
+pdf = Blueprint('pdf', __name__)
 
 
-@pdf_analyze_entities_bp.route('/pdf/analyze_entities', methods=['POST'])
+@pdf.route('/pdf/analyze_entities', methods=['POST'])
+@login_required
 def analyze_entities():
     if request.method == 'POST':
         f=request.files['file']
@@ -52,7 +56,8 @@ def analyze_entities():
                                                                         'title')])
 
 
-@pdf_analyze_entity_sentiment_bp.route('/pdf/analyze_entity_sentiment', methods=['POST'])
+@pdf.route('/pdf/analyze_entity_sentiment', methods=['POST'])
+@login_required
 def analyze_entity_sentiment():
     f=request.files['file']
     path=os.path.join(upload_folder, f.filename)
@@ -98,7 +103,8 @@ def analyze_entity_sentiment():
                                                                     'title')])
 
 
-@pdf_analyze_sentiment_bp.route('/pdf/analyze_sentiment', methods=['POST'])
+@pdf.route('/pdf/analyze_sentiment', methods=['POST'])
+@login_required
 def analyze_sentiment():
     if request.method == 'POST':
         f=request.files['file']
@@ -126,7 +132,8 @@ def analyze_sentiment():
                                                                         'title')])
 
 
-@pdf_analyze_syntax_bp.route('/pdf/analyze_syntax', methods=['POST'])
+@pdf.route('/pdf/analyze_syntax', methods=['POST'])
+@login_required
 def analyze_syntax():
     if request.method == 'POST':
         f=request.files['file']
@@ -155,7 +162,8 @@ def analyze_syntax():
                                                                         'title')])
 
 
-@pdf_annotate_text_bp.route('/pdf/annotate_text', methods=['POST'])
+@pdf.route('/pdf/annotate_text', methods=['POST'])
+@login_required
 def annotate_text():
     if request.method == 'POST':
         f=request.files['file']
@@ -191,7 +199,8 @@ def annotate_text():
                                                                         'title')])
 
 
-@pdf_classify_text_bp.route('/pdf/classify_text', methods=['POST'])
+@pdf.route('/pdf/classify_text', methods=['POST'])
+@login_required
 def classify_text():
     if request.method == 'POST':
         f=request.files['file']

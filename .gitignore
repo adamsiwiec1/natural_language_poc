@@ -2,3 +2,4 @@
 /venv
 /.idea
 config.py
+*.exe

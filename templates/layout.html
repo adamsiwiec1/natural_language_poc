@@ -47,17 +47,29 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/raw">Raw Text</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pricing">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
             </ul>
         </div>
-            <ul class="navbar-nav me-auto">
-                <li>
-                    <a class="nav-link" href="/">log in</a>
-                </li>
-                <a class="nav-link">|</a>
-                <li>
-                    <a class="nav-link" href="/">sign up</a>
-                </li>
-            </ul>
+        <ul class="navbar-nav me-auto">
+            <li>
+                <a class="nav-link" href="/login">log in</a>
+            </li>
+            <a class="nav-link">|</a>
+            {% if current_user.is_authenticated %}
+            <li>
+                <a class="nav-link" href="/logout">log out</a>
+            </li>
+            {% else %}
+            <li>
+                <a class="nav-link" href="/signup">sign up</a>
+            </li>
+            {% endif %}
+        </ul>
     </div>
 </nav>
 

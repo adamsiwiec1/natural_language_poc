@@ -3,17 +3,19 @@ import json
 import requests
 from flask import Blueprint
 from flask_restful import reqparse
-
+from flask_login import login_required
 from config import api_key
 from helpers import Helpers, nlp_url
 
 h=Helpers()
-analyze_entities_bp=Blueprint('analyze_entities', __name__)
-analyze_entity_sentiment_bp=Blueprint('analyze_entity_sentiment', __name__)
-analyze_sentiment_bp=Blueprint('analyze_sentiment', __name__)
-analyze_syntax_bp=Blueprint('analyze_syntax', __name__)
-annotate_text_bp=Blueprint('annotate_text', __name__)
-classify_text_bp=Blueprint('classify_text', __name__)
+# analyze_entities_bp=Blueprint('analyze_entities', __name__)
+# analyze_entity_sentiment_bp=Blueprint('analyze_entity_sentiment', __name__)
+# analyze_sentiment_bp=Blueprint('analyze_sentiment', __name__)
+# analyze_syntax_bp=Blueprint('analyze_syntax', __name__)
+# annotate_text_bp=Blueprint('annotate_text', __name__)
+# classify_text_bp=Blueprint('classify_text', __name__)
+
+raw = Blueprint('raw', __name__)
 
 '''
 https://cloud.google.com/natural-language/docs/reference/rest
@@ -21,7 +23,8 @@ https://cloud.google.com/natural-language
 '''
 
 
-@analyze_entities_bp.route('/analyze_entities', methods=['POST'])
+@raw.route('/analyze_entities', methods=['POST'])
+@login_required
 def analyze_entities():
     parser=reqparse.RequestParser()
     parser.add_argument('text', required=True)  # add args
@@ -41,7 +44,8 @@ def analyze_entities():
                        'entities': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
 
 
-@analyze_entities_bp.route('/analyze_entity_sentiment', methods=['POST'])
+@raw.route('/analyze_entity_sentiment', methods=['POST'])
+@login_required
 def analyze_entity_sentiment():
     parser=reqparse.RequestParser()
     parser.add_argument('text', required=True)  # add args
@@ -62,7 +66,8 @@ def analyze_entity_sentiment():
                        'entities': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
 
 
-@analyze_sentiment_bp.route('/analyze_sentiment', methods=['POST'])
+@raw.route('/analyze_sentiment', methods=['POST'])
+@login_required
 def analyze_sentiment():
     parser=reqparse.RequestParser()
     parser.add_argument('text', required=True)  # add args
@@ -86,7 +91,8 @@ def analyze_sentiment():
                        'sentences': d.get('sentences')})
 
 
-@analyze_syntax_bp.route('/analyze_syntax', methods=['POST'])
+@raw.route('/analyze_syntax', methods=['POST'])
+@login_required
 def analyze_syntax():
     parser=reqparse.RequestParser()
     parser.add_argument('text', required=True)  # add args
@@ -106,7 +112,8 @@ def analyze_syntax():
     return json.dumps(d)
 
 
-@annotate_text_bp.route('/annotate_text', methods=['POST'])
+@raw.route('/annotate_text', methods=['POST'])
+@login_required
 def annotate_text():
     parser=reqparse.RequestParser()
     parser.add_argument('text', required=True)  # add args
@@ -134,7 +141,8 @@ def annotate_text():
     return json.dumps(d)
 
 
-@classify_text_bp.route('/classify_text', methods=['POST'])
+@raw.route('/classify_text', methods=['POST'])
+@login_required
 def classify_text():
     parser=reqparse.RequestParser()
     parser.add_argument('text', required=True)  # add args

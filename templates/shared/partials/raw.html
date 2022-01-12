@@ -3,10 +3,11 @@
 <div class="container">
     <div id="raw-form">
         <form enctype="multipart/form-data" method="POST" name="form2" onsubmit="formSubmit2()">
-            Enter the text you would like to analyze:
-            &nbsp;
-            <input class="text-xl-center" name="text" type="text"/>
-            &nbsp;
+            <div style="margin-top: 25px;">
+                <h4>Enter the text you would like to analyze:</h4>
+            </div>
+            <input class="text-xl-center" id="raw-input" name="text" type="text"/>
+            <div>
             Choose an action to perform text:
             &nbsp;
             <select id="ddl2" name="ddl2">
@@ -18,6 +19,8 @@
                 <option value="http://localhost:5000/classify_text"> Classify Text</option>
             </select>
             <button type="submit">Submit</button>
+            </div>
+
         </form>
     </div>
 </div>
