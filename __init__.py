@@ -43,6 +43,5 @@ def page_not_found(error):
     return render_template('/shared/partials/page_not_found.html'), 404
 
 
-
 def run():
     serve(app,host='0.0.0.0', port=5000)
