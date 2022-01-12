@@ -10,7 +10,6 @@ from endpoints.main import main as main_blueprint
 from endpoints.pdf import pdf as pdf_blueprint
 from endpoints.raw import raw as raw_blueprint
 from models import User,init_db
-from gunicorn import
 
 # init SQLAlchemy so we can use it later in our models
 
