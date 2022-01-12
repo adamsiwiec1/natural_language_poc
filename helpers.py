@@ -44,3 +44,4 @@ class Helpers:
 
         return chars, units, cost
 
+print('hi')
