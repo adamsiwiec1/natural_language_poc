@@ -5,8 +5,8 @@
     <h3 class="title">Login</h3>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <div class="notification is-danger">
-        {{ messages[0] }}
+    <div>
+        <p class="text-danger">{{ messages[0] }}</p>
     </div>
     {% endif %}
     {% endwith %}

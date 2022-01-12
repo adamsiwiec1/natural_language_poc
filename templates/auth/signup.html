@@ -3,23 +3,30 @@
 {% block content %}
 <div class="column is-4 is-offset-4">
     <h3 class="title">Sign Up</h3>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div>
+        <p class="text-danger">{{ messages[0] }}</p>
+    </div>
+    {% endif %}
+    {% endwith %}
     <div class="box">
-        <form method="POST" action="{{ url_for('auth.signup') }}">
+        <form action="{{ url_for('auth.signup') }}" method="POST">
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="email" name="email" placeholder="Email" autofocus="">
+                    <input autofocus="" class="input is-large" name="email" placeholder="Email" type="email">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="text" name="name" placeholder="Name" autofocus="">
+                    <input autofocus="" class="input is-large" name="name" placeholder="Name" type="text">
                 </div>
             </div>
 
             <div class="field">
                 <div class="control">
-                    <input class="input is-large" type="password" name="password" placeholder="Password">
+                    <input class="input is-large" name="password" placeholder="Password" type="password">
                 </div>
             </div>
 
