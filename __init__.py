@@ -2,7 +2,7 @@ import logging
 
 from flask import Flask, render_template
 from flask_login import LoginManager
-
+from waitress import serve
 
 from auth import auth as auth_blueprint
 from endpoints.error import error as error_blueprint
@@ -44,8 +44,5 @@ def page_not_found(error):
 
 
 
-def main():
-    app.run()
-    #serve(app,host='0.0.0.0', port=5000)
-if __name__ == '__main__':
-    main()
+def run():
+    serve(app,host='0.0.0.0', port=5000)
