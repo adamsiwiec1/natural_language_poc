@@ -4,7 +4,7 @@ adam-nlp-poc:
  — apt-get install -y python-dev python-pip
  — pip install -r requirements.txt
  — export MONGOHQ_URL=$MONGO_URL
-
+ — python3 __init__.py
 production:
  type: deploy
  script:
