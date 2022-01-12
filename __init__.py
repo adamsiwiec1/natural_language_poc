@@ -15,6 +15,7 @@ import os
 # init SQLAlchemy so we can use it later in our models
 
 
+
 logging.basicConfig(filename='../app.log', encoding='utf-8')
 
 app=Flask(__name__)
