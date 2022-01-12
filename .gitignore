@@ -2,8 +2,6 @@
 /venv
 /.idea
 *.exe\
-config.py
-
 *.pyc
 *.pyo
 *.pyd
