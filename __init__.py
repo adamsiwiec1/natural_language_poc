@@ -2,7 +2,6 @@ import logging
 
 from flask import Flask, render_template
 from flask_login import LoginManager
-from waitress import serve
 
 from auth import auth as auth_blueprint
 from endpoints.error import error as error_blueprint
@@ -12,14 +11,9 @@ from endpoints.raw import raw as raw_blueprint
 from models import User,init_db
 import os
 
-# init SQLAlchemy so we can use it later in our models
-
-
-
-logging.basicConfig(filename='../app.log', encoding='utf-8')
 
 app=Flask(__name__)
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY']='secret-key-goes-here'
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///db.sqlite'
 init_db(app)
@@ -46,4 +40,4 @@ def page_not_found(error):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
