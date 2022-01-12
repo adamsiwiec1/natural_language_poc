@@ -1,6 +1,6 @@
 import logging
 
-from flask import Flask, render_template
+from flask import Flask, render_template,url_for
 from flask_login import LoginManager
 
 from auth import auth as auth_blueprint
@@ -10,6 +10,7 @@ from endpoints.raw import raw as raw_blueprint
 from models import User,init_db
 import os
 
+url_for.__name__
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -23,7 +24,6 @@ login_manager.init_app(app)
 
 app.register_blueprint(auth_blueprint)
 app.register_blueprint(main_blueprint)
-app.register_blueprint(error_blueprint)
 app.register_blueprint(pdf_blueprint)
 app.register_blueprint(raw_blueprint)
 
