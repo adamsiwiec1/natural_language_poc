@@ -1,1 +1,1 @@
-web: gunicorn --workers=2 __init__:run
+web: gunicorn __init__:run
