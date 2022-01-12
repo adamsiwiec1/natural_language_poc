@@ -47,3 +47,5 @@ def page_not_found(error):
 def main():
     app.run()
     #serve(app,host='0.0.0.0', port=5000)
+if __name__ == '__main__':
+    main()
