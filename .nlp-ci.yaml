@@ -4,7 +4,7 @@ adam-nlp-poc:
  — apt-get install -y python-dev python-pip
  — pip install -r requirements.txt
  — export MONGOHQ_URL=$MONGO_URL
- — python3 __init__.py
+ — python __init__.py
 production:
  type: deploy
  script:
@@ -12,6 +12,6 @@ production:
  — apt-get install -y ruby-dev
  — gem install dpl
  — dpl — provider=heroku — app=task-mgmt-app — api-key=$HEROKU_SECRET_KEY
- — python3 __init__.py
+ — python __init__.py
  only:
  — master
