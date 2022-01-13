@@ -13,7 +13,8 @@ import os
 app=Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY']='secret-key-goes-here'
-app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///db.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Adam51299?@104.197.4.124/db'
+
 init_db(app)
 
 login_manager=LoginManager()
