@@ -4,20 +4,12 @@ import os
 import requests
 from flask import request, Blueprint, render_template
 from json2html import json2html
-
-from config import api_key, upload_folder
 from helpers import Helpers, nlp_url
 from flask_login import login_required
 
 h=Helpers()
-# pdf_analyze_entities_bp=Blueprint('pdf_analyze_entities', __name__)
-# pdf_analyze_entity_sentiment_bp=Blueprint('pdf_analyze_entity_sentiment', __name__)
-# pdf_analyze_sentiment_bp=Blueprint('pdf_analyze_sentiment', __name__)
-# pdf_analyze_syntax_bp=Blueprint('pdf_analyze_syntax', __name__)
-# pdf_annotate_text_bp=Blueprint('pdf_annotate_text', __name__)
-# pdf_classify_text_bp=Blueprint('pdf_classify_text', __name__)
-
 pdf = Blueprint('pdf', __name__)
+api_key = os.environ['API_KEY']
 
 
 @pdf.route('/pdf/analyze_entities', methods=['POST'])
