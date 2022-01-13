@@ -14,6 +14,7 @@ app=Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY']='secret-key-goes-here'
 
+
 # these are uploaded as ENV var in the cloud run instance
 SQL_USER = os.environ['SQL_USER']
 SQL_PASSWORD = os.environ['SQL_PASSWORD']
