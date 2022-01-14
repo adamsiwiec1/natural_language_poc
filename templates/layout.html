@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"
-      xmlns="http://www.w3.org/1999/html">
+    xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
     <title>nlp</title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/adam.css') }}" rel="stylesheet">
-    
+
     <script src="{{url_for('static', filename='js/pdf.js')}}"></script>
     <script src="{{url_for('static', filename='js/pdf.worker.js')}}"></script>
-    
+
     <script>
         function formSubmit1() {
             const ddl = document.getElementById('ddl1');
@@ -32,15 +33,14 @@
             padding-left: .5rem !important;
         }
     </style>
-    
+
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/">Home</a>
         <button aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
+            class="navbar-toggler" data-bs-target="#navbarColor01" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
@@ -78,7 +78,7 @@
 </nav>
 
 <body>
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </body>
 
 

@@ -34,19 +34,23 @@ def analyze_entities():
         print(d)
         print(json.dumps(d))
         h.cost_calculator(pdf.get('text'), 'entity')
-        x=json.dumps({'author': pdf.get('author'),
-                      'title': pdf.get('title'),
+        x=json.dumps({'author': pdf.get('author', 'no_author'),
+                      'title': pdf.get('title', 'no_title'),
                       'subject': pdf.get('subject'),
-                      'pages': pdf.get('pages'),
+                      'pages': pdf.get('pages', 'no_pages'),
                       'entities:': [d.get('entities')[i].get('name') for i, x in enumerate(d.get('entities'))]})
         print(x)
+        try:
 
-        return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
+            return render_template('/shared/partials/table.html', data=[json2html.convert(json=x,
                                                                                       table_attributes="id=\"info-table\" class=\"table table-bordered table-hover\""),
                                                                     x,
                                                                     "analyze_entities_" + pdf.get(
-                                                                        'author') + "_" + pdf.get(
-                                                                        'title')])
+                                                                        'author', 'no_author') + "_" + pdf.get(
+                                                                        'title', 'no_title')])
+        except:
+
+            return render_template('/shared/partials/error_loading_pdf.html')
 
 
 @pdf.route('/pdf/analyze_entity_sentiment', methods=['POST'])

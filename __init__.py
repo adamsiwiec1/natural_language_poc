@@ -1,6 +1,6 @@
 # comment these next two lines out for production
-import local_config as lc
-lc.set_env_vars()
+# import local_config as lc
+# lc.set_env_vars()
 from flask import Flask, render_template,url_for
 from flask_login import LoginManager
 from auth import auth as auth_blueprint
