@@ -26,10 +26,212 @@ div {
     margin-top: 100px;
 }
 
-input{
+input {
     margin: 5px;
 }
 
-button{
+button {
     margin: 10px;
+}
+
+.home {
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 2.0;
+
+}
+
+
+
+#preview-container {
+    margin: 20px auto;
+    width: 600px;
+
+}
+
+#upload-dialog::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+#upload-dialog::before {
+    content: 'Select PDF';
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 30pt;
+    margin-left: -65px;
+    margin-top: -10px;
+
+}
+
+#upload-dialog:hover::before {
+    border-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    background: -webkit-linear-gradient(top, #777171, #777171);
+}
+
+#upload-dialog:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+#pdf-file {
+    display: none;
+}
+
+#pdf-loader {
+    display: none;
+    vertical-align: middle;
+    color: #cccccc;
+    font-size: 12px;
+}
+
+#pdf-preview {
+    display: none;
+    vertical-align: middle;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+#pdf-name {
+    display: none;
+    vertical-align: middle;
+    color: #336699;
+    margin: 0 15px;
+    max-width: 200px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#upload-button {
+    padding: 5px;
+    border: 1px solid #336699;
+    background-color: #336699;
+    color: white;
+    font-size: inherit;
+    font-family: inherit;
+    outline: none;
+    display: none;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+#cancel-pdf {
+    display: none;
+    vertical-align: middle;
+    padding: 0px;
+    border: none;
+    color: #777777;
+    background-color: white;
+    font-size: inherit;
+    font-family: inherit;
+    outline: none;
+    vertical-align: middle;
+    cursor: pointer;
+    margin: 0 0 0 15px;
+    outline: none;
+}
+
+.ddl1 {
+
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+    text-align: center;
+    z-index: 1;
+
+    outline: none;
+
+
+}
+
+.mt-4 {
+    text-align: center;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --select-border: rgb(0, 0, 0);
+    --select-focus: rgb(0, 0, 0);
+    --select-arrow: var(--select-border);
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+
+.ddl1 {
+    display: grid;
+    grid-template-areas: "select";
+    align-items: center;
+
+    text-align: center;
+
+
+    min-width: 15ch;
+    max-width: 30ch;
+
+    border: 1px solid var(--select-border);
+    border-radius: 0.25em;
+    padding: 0.25em 0.5em;
+
+    font-size: 1.25rem;
+    cursor: pointer;
+    line-height: 1.1;
+
+
+    background-color: #fff;
+    background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+
+}
+
+select,
+.select:after {
+    grid-area: select;
+}
+
+.select:after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    grid-area: select;
+    justify-self: end;
+}
+
+select:focus+.focus {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 2px solid var(--select-focus);
+    border-radius: inherit;
+
 }
