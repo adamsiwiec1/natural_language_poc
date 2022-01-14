@@ -13,7 +13,7 @@ import os
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
+print('hi')
 
 # these are uploaded as ENV var in the cloud run instance
 SQL_USER = os.environ['SQL_USER']
@@ -21,7 +21,7 @@ SQL_PASSWORD = os.environ['SQL_PASSWORD']
 SQL_IPV4 = os.environ['SQL_IPV4']
 SQL_DB = os.environ['SQL_DB']
 app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql+pymysql://{SQL_USER}:{SQL_PASSWORD}@{SQL_IPV4}/{SQL_DB}'
-
+app.config['SECRET_KEY'] = 'yoyoyooyoyooyoyoyooyoyooyoyooyyoyoyooyoyoyoyoyyooyooyoyoyooyoyooyoyoyoy'
 init_db(app)
 
 login_manager=LoginManager()
