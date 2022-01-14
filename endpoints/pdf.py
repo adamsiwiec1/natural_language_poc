@@ -10,6 +10,7 @@ from flask_login import login_required
 h=Helpers()
 pdf = Blueprint('pdf', __name__)
 api_key = os.environ['API_KEY']
+upload_folder=''
 
 
 @pdf.route('/pdf/analyze_entities', methods=['POST'])
