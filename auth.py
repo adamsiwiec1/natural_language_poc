@@ -2,8 +2,7 @@ from flask import Blueprint, request, redirect, render_template, url_for, sessio
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-
-from models import User
+from models import User, db
 
 auth=Blueprint('auth', __name__)
 
@@ -23,7 +22,6 @@ def signup():
             return redirect(url_for('auth.signup'))
 
         new_user=User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-        db=SQLAlchemy()
         db.session.add(new_user)
         db.session.commit()
         return render_template('/index.html')
@@ -55,7 +53,3 @@ def logout():
     logout_user()
     return render_template('/index.html')
 
-
-# @auth.route('/', methods=['GET'])
-# def home():
-#     return render_template('index.html', title='title', description='description')

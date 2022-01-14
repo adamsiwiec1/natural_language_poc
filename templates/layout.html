@@ -6,7 +6,10 @@
     <title>nlp</title>
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='css/adam.css') }}" rel="stylesheet">
-
+    
+    <script src="{{url_for('static', filename='js/pdf.js')}}"></script>
+    <script src="{{url_for('static', filename='js/pdf.worker.js')}}"></script>
+    
     <script>
         function formSubmit1() {
             const ddl = document.getElementById('ddl1');
@@ -29,6 +32,7 @@
             padding-left: .5rem !important;
         }
     </style>
+    
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -76,5 +80,6 @@
 <body>
 {% block content %}{% endblock %}
 </body>
+
 
 </html>
