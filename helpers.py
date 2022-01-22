@@ -59,7 +59,7 @@ class Helpers:
             units, cost=1, switch.get(request_type)
         else:
             units, cost=floor(len(text) / 1000), (floor(len(text) / 1000) * switch.get(request_type))
-
+    #boobs
         logging.log(1, f'\nchars: {chars}'
                        f'\nunits: {units}'
                        f'\ncosts: {cost}'

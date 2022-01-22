@@ -1,24 +1,27 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="container">
+<div class="home" >
     <div id="raw-form">
         <form enctype="multipart/form-data" method="POST" name="form2" onsubmit="formSubmit2()">
             <div style="margin-top: 25px;">
                 <h4>Enter the text you would like to analyze:</h4>
             </div>
-            <input class="text-xl-center" id="raw-input" name="text" type="text"/>
             <div>
-                Choose an action to perform text:
-                &nbsp;
-                <select id="ddl2" name="ddl2">
-                    <option value="/analyze_entities"> Analyze Entities</option>
-                    <option value="/analyze_entity_sentiment">Analyze Entity Sentiment</option>
-                    <option value="/analyze_sentiment"> Analyze Sentiment</option>
-                    <option value="/analyze_syntax"> Analyze Syntax</option>
-                    <option value="/annotate_text"> Annotate Text</option>
-                    <option value="/classify_text"> Classify Text</option>
-                </select>
-                <button type="submit">Submit</button>
+                <textarea style = "align-content:left" rows = "15" cols = "100" name = "text" placeholder = "Enter raw text..."></textarea>
+                <div style="line-height: 6.0;">
+                    Choose an action to perform text:
+                    &nbsp;
+                    <select id="ddl2" name="ddl2">
+                        <option value="/analyze_entities"> Analyze Entities</option>
+                        <option value="/analyze_entity_sentiment">Analyze Entity Sentiment</option>
+                        <option value="/analyze_sentiment"> Analyze Sentiment</option>
+                        <option value="/analyze_syntax"> Analyze Syntax</option>
+                        <option value="/annotate_text"> Annotate Text</option>
+                        <option value="/classify_text"> Classify Text</option>
+                    </select>
+    
+                </div>
+                <input  type = "submit" value = "submit" size = "x-small" />
             </div>
 
         </form>
