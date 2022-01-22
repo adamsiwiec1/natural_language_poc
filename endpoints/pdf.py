@@ -10,6 +10,7 @@ from flask_login import login_required
 h=Helpers()
 pdf = Blueprint('pdf', __name__)
 api_key = os.environ['API_KEY']
+upload_folder= '/'
 
 
 @pdf.route('/pdf/analyze_entities', methods=['POST'])
@@ -55,6 +56,7 @@ def analyze_entity_sentiment():
     path=os.path.join(upload_folder, f.filename)
     f.save(path)
     pdf=h.extract_pdf(path)
+    print(pdf.get('text'))
     body={"document": {
         "type": "PLAIN_TEXT",
         "language": "EN",
@@ -67,10 +69,10 @@ def analyze_entity_sentiment():
     d=json.loads(response.text)
     print(d)
     h.cost_calculator(pdf.get('text'), 'entity_sentiment')
-    x=json.dumps({'author': pdf.get('author'),
-                  'title': pdf.get('title'),
-                  'subject': pdf.get('subject'),
-                  'pages': pdf.get('pages'),
+    x=json.dumps({'author': pdf.get('author') if pdf.get('author') is not None else 'no author',
+                  'title': pdf.get('title') if pdf.get('title') is not None else 'no title',
+                  'subject': pdf.get('subject') if pdf.get('subject') is not None else 'no subject',
+                  'pages': pdf.get('pages') if pdf.get('pages') is not None else 'no pages',
                   'mentions': [
                       [(dict(zip(['name', 'content', 'beginOffset', 'type', 'salience', 'magnitude', 'score'],
                                  (d.get('entities')[i].get('name'),
