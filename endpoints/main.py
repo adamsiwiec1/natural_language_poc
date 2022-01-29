@@ -12,6 +12,9 @@ main=Blueprint('main', __name__)
 def index():
     return render_template('index.html', title='title', description='description')
 
+@main.route('/contact')
+def contact():
+    return render_template('shared/partials/contact.html')
 
 @main.route('/pdf')
 @login_required
