@@ -5,6 +5,9 @@
 *.pyc
 *.pyo
 *.pyd
+*.png
+*.jpg
+*.pdf
 /__pycache__
 .pytest_cache
 local_config.py
